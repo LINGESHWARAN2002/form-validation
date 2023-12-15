@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Form validation</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>Create Account</h2>
+            </div>
+            <form class="form" id="form">
+             <div class="form-control">
+                <label>Username</label>
+                <input type="text" placeholder="Frontened forever" id="username">
+                <i class='bx bx-check-shield'></i>
+                <i class='bx bxs-comment-error'></i>
+                <small>Error Message</small>
+             </div>
+             <div class="form-control">
+                <label>Email</label>
+                <input type="email" placeholder="@gmail" id="email">
+                <i class='bx bx-check-shield'></i>
+                <i class='bx bxs-comment-error'></i>
+                <small>Error Message</small>
+              
+             </div>
+             <div class="form-control">
+                <label>password</label>
+                <input type="password" placeholder="password" id="password">
+                <i class='bx bx-check-shield'></i>
+                <i class='bx bxs-comment-error'></i>  
+                <small>Error Message</small>    
+             </div>
+             <div class="form-control">
+                <labe>confirm password</label>
+                <input type="password" placeholder="confirm password" id="password2">
+                <i class='bx bx-check-shield'></i>
+                <i class='bx bxs-comment-error'></i>
+                <small>Error Message</small>      
+             </div><br>
+             <button>Submit</button>
+            </form>
+        </div>
+        <script>
+            const form = document.getElementById("form");
+            const username = document.getElementById("username");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+            const password2 = document.getElementById("password2");
+
+            form.addEventListener('submit',e =>{
+                e.preventDefault();
+                checkInput();
+            });
+
+            function checkInput(){
+                const usernameValue = username.value.trim();
+                const emailValue = email.value.trim();
+                const passwordValue = password.value.trim();
+                const password2Value = password2.value.trim();
+                
+                if(usernameValue == ''){
+                    serError(username, 'Username Cannot be blank');
+                }
+                else{
+                    setSucess(username);
+
+                }
+
+               if(emailValue ==''){
+                    setError(email, 'Email Cannot be balnk');
+                }
+                else if(!isemail(emmailValue))
+                {
+                    setError(email,'Not a valid Email');
+                }
+                else{
+                    setSucess(email); 
+                }
+                if(passwordValue == ''){
+                    serError(password, 'Username Cannot be blank');
+                }
+                else{
+                    setSucess(password);
+
+                }
+                if(password2Value ==''){
+                    setError(password2, 'Email Cannot be balnk');
+                }
+                else if(passwordValue !== password2Value)
+                {
+                    setError(password2,'Password Does not Match');
+                }
+                else{
+                    setSucess(password2); 
+                }
+
+                function setError(input, message){
+                    const formControl = input.parentElement;
+                    const small = formControl.querySelector('small')
+                    formControl.className = 'form-control error';
+                    small.innerText = message;
+                }
+
+                function setSucess(){
+                    const formControl= input.parentElement;
+                    formControl.className='form-control sucess';
+                }
+                function isEMail(email){
+                    return[a-zA-Z].test(email);
+                }
+            }
+        </script>
+    </body>
+</html>
